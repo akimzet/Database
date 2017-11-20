@@ -14,13 +14,13 @@ module.exports.storeData =  function (request, response) {
     //store data from product website
     var body = JSON.stringify(req.body);  //if wanted entire body as JSON
     var params = JSON.stringify(req.params);//if wanted parameters
-    var FIRSTNAME = req.body.FIRSTNAME;
-    var LASTNAME = req.body.LASTNAME;
-    var BSTREET = req.body.STREET;
-    var BCITY = req.body.CITY;
-    var BSTATE = req.body.STATE;
-    var BZIP = req.body.ZIP;
-    var EMAIL = req.body.EMAIL;
+    var FIRSTNAME = request.body.FIRSTNAME;
+    var LASTNAME = request.body.LASTNAME;
+    var BSTREET = request.body.STREET;
+    var BCITY = request.body.CITY;
+    var BSTATE = request.body.STATE;
+    var BZIP = request.body.ZIP;
+    var EMAIL = request.body.EMAIL;
     response.send("hello " + FIRSTNAME);
 
     mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
