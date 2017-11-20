@@ -12,8 +12,8 @@ var mongoDBURI = process.env.MONGODB_URI || 'mongodb://jk4629:password@ds113626.
 module.exports.storeData =  function (request, response) {
 
     //store data from product website
-    var body = JSON.stringify(req.body);  //if wanted entire body as JSON
-    var params = JSON.stringify(req.params);//if wanted parameters
+    var body = JSON.stringify(request.body);  //if wanted entire body as JSON
+    var params = JSON.stringify(request.params);//if wanted parameters
     var FIRSTNAME = request.body.FIRSTNAME;
     var LASTNAME = request.body.LASTNAME;
     var BSTREET = request.body.STREET;
