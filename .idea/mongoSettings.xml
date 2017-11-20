@@ -19,6 +19,22 @@
           <option name="userDatabase" value="heroku_4j5xvh9t" />
           <option name="username" value="jk4629" />
         </ServerConfiguration>
+        <ServerConfiguration>
+          <option name="authenticationDatabase" value="heroku_xwg1wk7x" />
+          <option name="authenticationMechanism" value="SCRAM-SHA-1" />
+          <option name="label" value="Project2Database" />
+          <option name="password" value="password" />
+          <option name="serverUrls">
+            <list>
+              <option value="ds113626.mlab.com:13626" />
+            </list>
+          </option>
+          <option name="sshTunnelingConfiguration">
+            <SshTunnelingConfiguration />
+          </option>
+          <option name="userDatabase" value="heroku_xwg1wk7x" />
+          <option name="username" value="jk4629" />
+        </ServerConfiguration>
       </list>
     </option>
   </component>
