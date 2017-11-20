@@ -21,7 +21,7 @@ module.exports.storeData =  function (request, response) {
     var BSTATE = req.body.STATE;
     var BZIP = req.body.ZIP;
     var EMAIL = req.body.EMAIL;
-    res.send("hello " + value_name);
+    response.send("hello " + FIRSTNAME);
 
     mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
         if(err) throw err;
