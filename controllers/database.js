@@ -26,7 +26,7 @@ module.exports.storeData =  function (request, response) {
         var BSTATE = request.body.STATE;
         var BZIP = request.body.ZIP;
         var EMAIL = request.body.EMAIL;
-        response.send("hello " + FIRSTNAME);
+        response.send("hello " + FIRSTNAME + LASTNAME);
 
 
 
