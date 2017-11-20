@@ -11,20 +11,23 @@ var mongoDBURI = process.env.MONGODB_URI || 'mongodb://jk4629:password@ds113626.
  */
 module.exports.storeData =  function (request, response) {
 
-    //store data from product website
-    // var body = JSON.stringify(request.body);  //if wanted entire body as JSON
-    // var params = JSON.stringify(request.params);//if wanted parameters
-    var FIRSTNAME = request.body.FIRSTNAME;
-    var LASTNAME = request.body.LASTNAME;
-    var BSTREET = request.body.STREET;
-    var BCITY = request.body.CITY;
-    var BSTATE = request.body.STATE;
-    var BZIP = request.body.ZIP;
-    var EMAIL = request.body.EMAIL;
-    response.send("hello " + FIRSTNAME);
+
 
     mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
         if(err) throw err;
+
+        //store data from product website
+        // var body = JSON.stringify(request.body);  //if wanted entire body as JSON
+        // var params = JSON.stringify(request.params);//if wanted parameters
+        var FIRSTNAME = request.body.FIRSTNAME;
+        var LASTNAME = request.body.LASTNAME;
+        var BSTREET = request.body.STREET;
+        var BCITY = request.body.CITY;
+        var BSTATE = request.body.STATE;
+        var BZIP = request.body.ZIP;
+        var EMAIL = request.body.EMAIL;
+        response.send("hello " + FIRSTNAME);
+
 
 
         //get collection of routes
