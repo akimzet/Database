@@ -46,20 +46,33 @@ module.exports.storeData =  function (request, response) {
         var SHIPPING = db.collection('SHIPPING');
         var ORDERS = db.collection('ORDERS');
 
-        var customerData = {
-            _id: CUSTOMER_ID,
-            FIRSTNAME: request.body.FIRSTNAME,
-            LASTNAME: request.body.LASTNAME,
-            STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
-            CITY: request.body.SHIPPING_CITY,
-            STATE: request.body.SHIPPING_STATE,
-            ZIP: request.body.SHIPPING_ZIP,
-            PHONE: request.body.PHONE
+        // var customerData = {
+        //     _id: CUSTOMER_ID,
+        //     FIRSTNAME: request.body.FIRSTNAME,
+        //     LASTNAME: request.body.LASTNAME,
+        //     STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
+        //     CITY: request.body.SHIPPING_CITY,
+        //     STATE: request.body.SHIPPING_STATE,
+        //     ZIP: request.body.SHIPPING_ZIP,
+        //     PHONE: request.body.PHONE
+        // };
+        //
+        // CUSTOMERS.insertOne(customerData, function (err, result) {
+        //     if (err) throw err;
+        // })
+
+        var billingData = {
+            _id: BILLING_ID,
+            CUSTOMER_ID: CUSTOMER_ID,
+            CREDITCARDTYPE: request.body.CREDITCARDTYPE,
+            CREDITCARDNUM: request.body.CREDITCARDNUM,
+            CREDITCARDEXP: request.body.CREDITCARDEXP,
+            CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
         };
 
-        CUSTOMERS.insertOne(customerData, function (err, result) {
-            if (err) throw err;
-        })
+        CUSTOMERS.insertOne(billingData, function (err, result) {
+                if (err) throw err;
+            })
 
 
 
