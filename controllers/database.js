@@ -55,17 +55,17 @@ module.exports.storeData =  function (request, response) {
                 SHIPPING_ZIP: request.body.SHIPPING_ZIP
             };
 
-        CUSTOMERS.insertOne(customerData, function (err, result)
+        CUSTOMERS.insertMany(customerData, function (err, result)
         {
             if (err) throw err;
         })
 
-        BILLING.insertOne(billingData, function (err, result)
+        BILLING.insertMany(billingData, function (err, result)
         {
             if (err) throw err;
         })
 
-        SHIPPING.insertOne(shippingData, function (err, result)
+        SHIPPING.insertMany(shippingData, function (err, result)
         {
             if (err) throw err;
         })
