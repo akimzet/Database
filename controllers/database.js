@@ -26,7 +26,23 @@ module.exports.storeData =  function (request, response) {
         var BSTATE = request.body.STATE;
         var BZIP = request.body.ZIP;
         var EMAIL = request.body.EMAIL;
-        response.send("hello " + FIRSTNAME + " " + LASTNAME);
+
+        var CUSTOMER_ID = request.body.CUSTOMER_ID;
+        var CREDITCARDTYPE = request.body.CREDITCARDTYPE;
+        var CREDITCARDNUM = request.body.CREDITCARDNUM;
+        var CREDITCARDEXP = request.body.CREDITCARDEXP;
+
+        var SHIPPING_STREET = request.body.SHIPPING_STREET;
+        var SHIPPING_CITY = request.body.SHIPPING_CITY;
+        var SHIPPING_STATE = request.body.SHIPPING_STATE;
+        var SHIPPING_ZIP = request.body.SHIPPING_ZIP;
+
+        var BILLING_ID = request.body.BILLING_ID;
+        var SHIPPING_ID = request.body.SHIPPING_ID;
+        var DATE = request.body.DATE;
+
+        response.send(FIRSTNAME+LASTNAME+BSTREET+BCITY+BSTATE+BZIP+EMAIL+CUSTOMER_ID+CREDITCARDTYPE+CREDITCARDNUM+CREDITCARDEXP+
+    SHIPPING_STREET+SHIPPING_CITY+SHIPPING_STATE+SHIPPING_ZIP+BILLING_ID+SHIPPING_ID+DATE);
 
 
 
