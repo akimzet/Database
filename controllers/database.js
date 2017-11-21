@@ -10,9 +10,6 @@ var mongoDBURI = process.env.MONGODB_URI || 'mongodb://jk4629:password@ds113626.
  *
  */
 module.exports.storeData =  function (request, response) {
-
-
-
     mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
         if(err) throw err;
 
@@ -27,7 +24,7 @@ module.exports.storeData =  function (request, response) {
         var BZIP = request.body.ZIP;
         var EMAIL = request.body.EMAIL;
 
-        var CUSTOMER_ID = request.body.CUSTOMER_ID;
+        var CUSTOMER_ID = Math.floor((Math.random() * 1000000000000) + 1);
         var CREDITCARDTYPE = request.body.CREDITCARDTYPE;
         var CREDITCARDNUM = request.body.CREDITCARDNUM;
         var CREDITCARDEXP = request.body.CREDITCARDEXP;
@@ -37,22 +34,51 @@ module.exports.storeData =  function (request, response) {
         var SHIPPING_STATE = request.body.SHIPPING_STATE;
         var SHIPPING_ZIP = request.body.SHIPPING_ZIP;
 
-        var BILLING_ID = request.body.BILLING_ID;
-        var SHIPPING_ID = request.body.SHIPPING_ID;
+        var BILLING_ID = Math.floor((Math.random() * 1000000000000) + 1);
+        var SHIPPING_ID = Math.floor((Math.random() * 1000000000000) + 1);
         var DATE = request.body.DATE;
 
         response.send(FIRSTNAME+LASTNAME+BSTREET+BCITY+BSTATE+BZIP+EMAIL+CUSTOMER_ID+CREDITCARDTYPE+CREDITCARDNUM+CREDITCARDEXP+
     SHIPPING_STREET+SHIPPING_CITY+SHIPPING_STATE+SHIPPING_ZIP+BILLING_ID+SHIPPING_ID+DATE);
 
+        var CUSTOMERS = db.collection('CUSTOMERS');
+        var BILLING = db.collection('BILLING');
+        var SHIPPING = db.collection('SHIPPING');
+        var ORDERS = db.collection('ORDERS');
+
+        var customerData = {
+            _id: CUSTOMER_ID,
+            FIRSTNAME: request.body.FIRSTNAME,
+            LASTNAME: request.body.LASTNAME,
+            STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
+            CITY: request.body.SHIPPING_CITY,
+            STATE: request.body.SHIPPING_STATE,
+            ZIP: request.body.SHIPPING_ZIP,
+            PHONE: request.body.PHONE
+        };
+
+        CUSTOMERS.insertOne(customerData, function (err, result) {
+            if (err) throw err;
+        })
+
+
+
+
+        /*CUSTOMERS.deleteMany({}, function (err, result) {
+        if (err) throw err;
+        });*/
+
+
+
 
 
         //get collection of routes
-        var Routes = db.collection('Routes');
+        // var Routes = db.collection('Routes');
 
 
         //FIRST showing you one way of making request for ALL routes and cycle through with a forEach loop on returned Cursor
         //   this request and loop  is to display content in the  console log
-        var c = Routes.find({});
+        // var c = Routes.find({});
 
         c.forEach(
             function(myDoc) {
