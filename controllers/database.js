@@ -1,14 +1,5 @@
-var express = require('express');
-var router = express.Router();
 var mongodb = require('mongodb');
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://jk4629:password@ds113626.mlab.com:13626/heroku_xwg1wk7x';
-
-//to process data sent in on request need body-parser module
-var bodyParser = require('body-parser');
-var path = require('path'); //to work with separtors on any OS including Windows
-var querystring = require('querystring'); //for use in GET Query string of form URI/path?name=value
-router.use(bodyParser.json()); // for parsing application/json
-router.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencode
 
 
 module.exports.storeData =  function (request, response) {
@@ -23,29 +14,29 @@ module.exports.storeData =  function (request, response) {
         var BILLING = db.collection('BILLING');
         var SHIPPING = db.collection('SHIPPING');
         var ORDERS = db.collection('ORDERS');
-        //
-        // var customerData =
-        //     {
-        //         _id: CUSTOMER_ID,
-        //         FIRSTNAME: request.body.FIRSTNAME,
-        //         LASTNAME: request.body.LASTNAME,
-        //         STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
-        //         CITY: request.body.SHIPPING_CITY,
-        //         STATE: request.body.SHIPPING_STATE,
-        //         ZIP: request.body.SHIPPING_ZIP,
-        //         PHONE: request.body.PHONE
-        //     };
-        //
-        //
-        // var billingData =
-        //     {
-        //         _id: BILLING_ID,
-        //         CUSTOMER_ID: CUSTOMER_ID,
-        //         CREDITCARDTYPE: request.body.CREDITCARDTYPE,
-        //         CREDITCARDNUM: request.body.CREDITCARDNUM,
-        //         CREDITCARDEXP: request.body.CREDITCARDEXP,
-        //         CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
-        //     };
+
+        var customerData =
+            {
+                _id: CUSTOMER_ID,
+                FIRSTNAME: request.body.FIRSTNAME,
+                LASTNAME: request.body.LASTNAME,
+                STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
+                CITY: request.body.SHIPPING_CITY,
+                STATE: request.body.SHIPPING_STATE,
+                ZIP: request.body.SHIPPING_ZIP,
+                PHONE: request.body.PHONE
+            };
+
+
+        var billingData =
+            {
+                _id: BILLING_ID,
+                CUSTOMER_ID: CUSTOMER_ID,
+                CREDITCARDTYPE: request.body.CREDITCARDTYPE,
+                CREDITCARDNUM: request.body.CREDITCARDNUM,
+                CREDITCARDEXP: request.body.CREDITCARDEXP,
+                CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
+            };
 
         var shippingData =
             {
@@ -59,15 +50,15 @@ module.exports.storeData =  function (request, response) {
 
 
 
-        CUSTOMERS.insertOne(customerData, function (err, result)
-        {
-            if (err) throw err;
-        });
-
-        BILLING.insertOne(billingData, function (err, result)
-        {
-            if (err) throw err;
-        });
+        // CUSTOMERS.insertOne(customerData, function (err, result)
+        // {
+        //     if (err) throw err;
+        // });
+        //
+        // BILLING.insertOne(billingData, function (err, result)
+        // {
+        //     if (err) throw err;
+        // });
 
         SHIPPING.insertOne(shippingData, function (err, result)
         {
