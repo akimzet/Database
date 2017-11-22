@@ -10,6 +10,17 @@ var mongoDBURI = process.env.MONGODB_URI || 'mongodb://jk4629:password@ds113626.
  *
  */
 module.exports.storeData =  function (request, response) {
+
+    var billingData =
+        {
+            _id: BILLING_ID,
+            CUSTOMER_ID: CUSTOMER_ID,
+            CREDITCARDTYPE: request.body.CREDITCARDTYPE,
+            CREDITCARDNUM: request.body.CREDITCARDNUM,
+            CREDITCARDEXP: request.body.CREDITCARDEXP,
+            CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
+        };
+    
     mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
         if(err) throw err;
 
@@ -35,15 +46,7 @@ module.exports.storeData =  function (request, response) {
             };
 
 
-        var billingData =
-            {
-                _id: BILLING_ID,
-                CUSTOMER_ID: CUSTOMER_ID,
-                CREDITCARDTYPE: request.body.CREDITCARDTYPE,
-                CREDITCARDNUM: request.body.CREDITCARDNUM,
-                CREDITCARDEXP: request.body.CREDITCARDEXP,
-                CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
-            };
+
 
         var shippingData =
             {
