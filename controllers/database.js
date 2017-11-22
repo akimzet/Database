@@ -17,15 +17,7 @@ module.exports.storeData =  function (request, response) {
         };
 
 
-    var billingData =
-        {
-            _id: BILLING_ID,
-            CUSTOMER_ID: CUSTOMER_ID,
-            CREDITCARDTYPE: request.body.CREDITCARDTYPE,
-            CREDITCARDNUM: request.body.CREDITCARDNUM,
-            CREDITCARDEXP: request.body.CREDITCARDEXP,
-            CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
-        };
+
 
     var shippingData =
         {
@@ -106,8 +98,15 @@ module.exports.storeData =  function (request, response) {
             if (err) throw err;
         });
 
-
-
+        var billingData =
+            {
+                _id: BILLING_ID,
+                CUSTOMER_ID: CUSTOMER_ID,
+                CREDITCARDTYPE: request.body.CREDITCARDTYPE,
+                CREDITCARDNUM: request.body.CREDITCARDNUM,
+                CREDITCARDEXP: request.body.CREDITCARDEXP,
+                CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
+            };
 
         /*CUSTOMERS.deleteMany({}, function (err, result) {
         if (err) throw err;
