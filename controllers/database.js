@@ -1,14 +1,16 @@
-
+var express = require('express');
+var router = express.Router();
 var mongodb = require('mongodb');
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://jk4629:password@ds113626.mlab.com:13626/heroku_xwg1wk7x';
 
-/** getAllRoutes controller logic that current does model logic too -connects to Mongo database and
- * queries the Routes collection to retrieve all the routes and build the output usig the
- * ejs template storeData.ejs found in views directory
- * @param request
- * @param response
- *
- */
+//to process data sent in on request need body-parser module
+var bodyParser = require('body-parser');
+var path = require('path'); //to work with separtors on any OS including Windows
+var querystring = require('querystring'); //for use in GET Query string of form URI/path?name=value
+router.use(bodyParser.json()); // for parsing application/json
+router.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencode
+
+
 module.exports.storeData =  function (request, response) {
     mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
         if(err) throw err;
