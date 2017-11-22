@@ -14,14 +14,7 @@ module.exports.storeData =  function (request, response) {
         if(err) throw err;
 
         var CUSTOMER_ID = Math.floor((Math.random() * 1000000000000) + 1);
-        var BILLING_ID = Math.floor((Math.random() * 1000000000000) + 1);
-        var SHIPPING_ID = Math.floor((Math.random() * 1000000000000) + 1);
-
         var CUSTOMERS = db.collection('CUSTOMERS');
-        var BILLING = db.collection('BILLING');
-        var SHIPPING = db.collection('SHIPPING');
-        var ORDERS = db.collection('ORDERS');
-
         var customerData =
             {
                 _id: CUSTOMER_ID,
@@ -33,8 +26,56 @@ module.exports.storeData =  function (request, response) {
                 ZIP: request.body.SHIPPING_ZIP,
                 PHONE: request.body.PHONE
             };
+        CUSTOMERS.insertOne(customerData, function (err, result)
+        {
+            if (err) throw err;
+        })
 
 
+
+        /*CUSTOMERS.deleteMany({}, function (err, result) {
+        if (err) throw err;
+        });*/
+
+
+
+
+
+        //get collection of routes
+        // var Routes = db.collection('Routes');
+
+
+        //FIRST showing you one way of making request for ALL routes and cycle through with a forEach loop on returned Cursor
+        //   this request and loop  is to display content in the  console log
+        // var c = Routes.find({});
+
+        c.forEach(
+            function(myDoc) {
+                console.log( "name: " + myDoc.name );  //just  loging the output to the console
+            }
+        );
+
+
+        //SECOND -show another way to make request for ALL Routes  and simply collect the  documents as an
+        //   array called docs that you  forward to the  storeData.ejs view for use there
+        Routes.find().toArray(function (err, docs) {
+            if(err) throw err;
+
+            response.render('storeData', {results: docs});
+
+        });
+
+
+        //close connection when your app is terminating.
+        db.close(function (err) {
+            if(err) throw err;
+        });
+    });//end of connect
+    mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
+        if(err) throw err;
+
+        var BILLING_ID = Math.floor((Math.random() * 1000000000000) + 1);
+        var BILLING = db.collection('BILLING');
         var billingData =
             {
                 _id: BILLING_ID,
@@ -44,7 +85,56 @@ module.exports.storeData =  function (request, response) {
                 CREDITCARDEXP: request.body.CREDITCARDEXP,
                 CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
             };
+        BILLING.insertOne(billingData, function (err, result)
+        {
+            if (err) throw err;
+        })
 
+
+
+        /*CUSTOMERS.deleteMany({}, function (err, result) {
+        if (err) throw err;
+        });*/
+
+
+
+
+
+        //get collection of routes
+        // var Routes = db.collection('Routes');
+
+
+        //FIRST showing you one way of making request for ALL routes and cycle through with a forEach loop on returned Cursor
+        //   this request and loop  is to display content in the  console log
+        // var c = Routes.find({});
+
+        c.forEach(
+            function(myDoc) {
+                console.log( "name: " + myDoc.name );  //just  loging the output to the console
+            }
+        );
+
+
+        //SECOND -show another way to make request for ALL Routes  and simply collect the  documents as an
+        //   array called docs that you  forward to the  storeData.ejs view for use there
+        Routes.find().toArray(function (err, docs) {
+            if(err) throw err;
+
+            response.render('storeData', {results: docs});
+
+        });
+
+
+        //close connection when your app is terminating.
+        db.close(function (err) {
+            if(err) throw err;
+        });
+    });//end of connect
+    mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
+        if(err) throw err;
+
+        var SHIPPING_ID = Math.floor((Math.random() * 1000000000000) + 1);
+        var SHIPPING = db.collection('SHIPPING');
         var shippingData =
             {
                 _id: SHIPPING_ID,
@@ -54,20 +144,7 @@ module.exports.storeData =  function (request, response) {
                 SHIPPING_STATE: request.body.SHIPPING_STATE,
                 SHIPPING_ZIP: request.body.SHIPPING_ZIP
             };
-
-
-
-        CUSTOMERS.collections.insert(customerData, function (err, result)
-        {
-            if (err) throw err;
-        })
-
-        BILLING.collections.insert(billingData, function (err, result)
-        {
-            if (err) throw err;
-        })
-
-        SHIPPING.collections.insert(shippingData, function (err, result)
+        SHIPPING.insertOne(shippingData, function (err, result)
         {
             if (err) throw err;
         })
@@ -106,13 +183,6 @@ module.exports.storeData =  function (request, response) {
             response.render('storeData', {results: docs});
 
         });
-
-
-        //Showing in comments here some alternative read (find) requests
-        //this gets Routes where frequency>=10 and sorts by name
-        // Routes.find({ "frequency": { "$gte": 10 } }).sort({ name: 1 }).toArray(function (err, docs) {
-        // this sorts all the Routes by name
-        //  Routes.find().sort({ name: 1 }).toArray(fu namenction (err, docs) {
 
 
         //close connection when your app is terminating.
