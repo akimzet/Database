@@ -60,16 +60,19 @@ module.exports.storeData =  function (request, response) {
         CUSTOMERS.insertOne(customerData, function (err, result)
         {
             if (err) throw err;
+            console.log("1 document inserted");
         })
 
         BILLING.insertOne(billingData, function (err, result)
         {
             if (err) throw err;
+            console.log("1 document inserted");
         })
 
         SHIPPING.insertOne(shippingData, function (err, result)
         {
             if (err) throw err;
+            console.log("1 document inserted");
         })
 
 
