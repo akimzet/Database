@@ -7,7 +7,7 @@ var mongoDBURI = process.env.MONGODB_URI || 'mongodb://jk4629:password@ds113626.
  * ejs template storeData.ejs found in views directory
  * @param request
  * @param response
- *
+ *asd
  */
 module.exports.storeData =  function (request, response) {
     mongodb.MongoClient.connect(mongoDBURI, function(err, db) {
