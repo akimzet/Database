@@ -80,16 +80,17 @@ module.exports.storeData =  function (request, response)
                 ORDER_TOTAL: request.body.ORDER_TOTAL
             };
 
-        response.send("Data caught");
-
         // Send data to mLab
         CUSTOMERS.insertOne(customerData, function (err, result){ if (err) throw err; });
         BILLING.insertOne(billingData, function (err, result){ if (err) throw err; });
         SHIPPING.insertOne(shippingData, function (err, result){ if (err) throw err; });
         ORDERS.insertOne(ordersData, function (err, result){ if (err) throw err; });
 
-        // Close connection
+        // Close connection to mLab
         db.close(function (err){ if(err) throw err; });
+
+        // Send message back to finalOrder.php
+        response.send("THANK YOU FOR YOUR SUBMITTED ORDER");
     });
 
 
