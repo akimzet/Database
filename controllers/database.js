@@ -1,3 +1,5 @@
+var express = require('express');
+var router = express.Router();
 
 var mongodb = require('mongodb');
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://jk4629:password@ds113626.mlab.com:13626/heroku_xwg1wk7x';
@@ -91,6 +93,10 @@ module.exports.storeData =  function (request, response)
 
         // Send message back to finalOrder.php
         response.send("THANK YOU FOR YOUR SUBMITTED ORDER");
+
+        router.get('/', function(req, res, next) {
+            res.render('storeData', { title: 'Database' });
+        });
     });
 
 
