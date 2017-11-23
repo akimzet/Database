@@ -76,8 +76,8 @@ module.exports.storeData =  function (request, response)
                 BILLING_ID: BILLING_ID,
                 SHIPPING_ID: SHIPPING_ID,
                 DATE: request.body.DATE,
-                PRODUCT_VECTOR: stringVector
-                
+                PRODUCT_VECTOR: stringVector,
+                ORDER_TOTAL: request.body.ORDER_TOTAL
             };
 
         response.send("Data caught");
