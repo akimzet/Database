@@ -20,6 +20,20 @@ module.exports.storeData =  function (request, response)
 
         // Parse string data to create product vector
         var stringData = request.body.STRINGDATA;
+        var arrayData = stringData.split(' ').map(Number);
+        var count1 = 0
+        var count2 = 1
+        var count3 = 2
+        var stringVector = '';
+        var size = arrayData.length / 3;
+        for ( var i = 0; i < size ; i++)
+        {
+            stringVector += '{' + arrayData[count1] + ', ' + arrayData[count2] + ', ' + arrayData[count3] + '}';
+            count1 += 3
+            count2 += 3
+            count3 += 3
+            if(i != size - 1) stringVector += ', ';
+        }
 
 
         var customerData =
@@ -62,7 +76,8 @@ module.exports.storeData =  function (request, response)
                 BILLING_ID: BILLING_ID,
                 SHIPPING_ID: SHIPPING_ID,
                 DATE: request.body.DATE,
-                PRODUCT_VECTOR: request.body.STRINGDATA
+                PRODUCT_VECTOR: stringVector
+                
             };
 
         response.send("Data caught");
