@@ -14,12 +14,11 @@ module.exports.storeData =  function (request, response) {
         if(err) throw err;
 
         var CUSTOMER_ID = Math.floor((Math.random() * 1000000000000) + 1);
-        var BILLING_ID = Math.floor((Math.random() * 1000000000000) + 1);
-        var SHIPPING_ID = Math.floor((Math.random() * 1000000000000) + 1);
+
+
 
         var CUSTOMERS = db.collection('CUSTOMERS');
-        var BILLING = db.collection('BILLING');
-        var SHIPPING = db.collection('SHIPPING');
+
 
         var customerData =
             {
@@ -33,7 +32,12 @@ module.exports.storeData =  function (request, response) {
                 PHONE: request.body.PHONE
             };
 
-
+        CUSTOMERS.insertOne(customerData, function (err, result)
+        {
+            if (err) throw err;
+        });
+        var BILLING_ID = Math.floor((Math.random() * 1000000000000) + 1);
+        var BILLING = db.collection('BILLING');
         var billingData =
             {
                 _id: BILLING_ID,
@@ -44,6 +48,14 @@ module.exports.storeData =  function (request, response) {
                 CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
             };
 
+        BILLING.insertOne(billingData, function (err, result)
+        {
+            if (err) throw err;
+        });
+
+        var SHIPPING_ID = Math.floor((Math.random() * 1000000000000) + 1);
+        var SHIPPING = db.collection('SHIPPING');
+
         var shippingData =
             {
                 _id: SHIPPING_ID,
@@ -53,18 +65,6 @@ module.exports.storeData =  function (request, response) {
                 SHIPPING_STATE: request.body.SHIPPING_STATE,
                 SHIPPING_ZIP: request.body.SHIPPING_ZIP
             };
-
-        var myobj = { name: "Company Inc", address: "Highway 37" };
-
-        CUSTOMERS.insertOne(customerData, function (err, result)
-        {
-            if (err) throw err;
-        });
-
-        BILLING.insertOne(myobj, function (err, result)
-        {
-            if (err) throw err;
-        });
 
         SHIPPING.insertOne(shippingData, function (err, result)
         {
