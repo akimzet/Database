@@ -65,6 +65,8 @@ module.exports.storeData =  function (request, response)
                 PRODUCT_VECTOR: request.body.stringData
             };
 
+        response.send("Data caught");
+
         // Send data to mLab
         CUSTOMERS.insertOne(customerData, function (err, result){ if (err) throw err; });
         BILLING.insertOne(billingData, function (err, result){ if (err) throw err; });
