@@ -11,11 +11,16 @@ module.exports.storeData =  function (request, response)
         var CUSTOMER_ID = Math.floor((Math.random() * 1000000000000) + 1);
         var BILLING_ID = Math.floor((Math.random() * 1000000000000) + 1);
         var SHIPPING_ID = Math.floor((Math.random() * 1000000000000) + 1);
+        var ORDER_ID = Math.floor((Math.random() * 1000000000000) + 1);
 
         var CUSTOMERS = db.collection('CUSTOMERS');
         var BILLING = db.collection('BILLING');
         var SHIPPING = db.collection('SHIPPING');
         var ORDERS = db.collection('ORDERS');
+
+        // Parse string data to create product vector
+        var stringData = request.body.STRINGDATA;
+
 
         var customerData =
             {
@@ -50,10 +55,21 @@ module.exports.storeData =  function (request, response)
                 SHIPPING_ZIP: request.body.SHIPPING_ZIP
             };
 
+        var ordersData =
+            {
+                _id: ORDER_ID,
+                CUSTOMER_ID: CUSTOMER_ID,
+                BILLING_ID: BILLING_ID,
+                SHIPPING_ID: SHIPPING_ID,
+                DATE: DATE,
+                PRODUCT_VECTOR: stringData
+            };
+
         // Send data to mLab
         CUSTOMERS.insertOne(customerData, function (err, result){ if (err) throw err; });
         BILLING.insertOne(billingData, function (err, result){ if (err) throw err; });
         SHIPPING.insertOne(shippingData, function (err, result){ if (err) throw err; });
+        ORDERS.insertOne(ordersData, function (err, result){ if (err) throw err; });
 
         // Close connection
         db.close(function (err){ if(err) throw err; });
