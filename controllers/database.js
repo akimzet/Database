@@ -54,14 +54,14 @@ module.exports.storeData =  function (request, response) {
                 SHIPPING_ZIP: request.body.SHIPPING_ZIP
             };
 
-
+        var myobj = { name: "Company Inc", address: "Highway 37" };
 
         CUSTOMERS.insertOne(customerData, function (err, result)
         {
             if (err) throw err;
         });
 
-        BILLING.insertOne(billingData, function (err, result)
+        BILLING.insertOne(myobj, function (err, result)
         {
             if (err) throw err;
         });
