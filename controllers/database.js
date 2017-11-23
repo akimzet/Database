@@ -55,7 +55,7 @@ module.exports.storeData =  function (request, response)
                 CUSTOMER_ID: CUSTOMER_ID,
                 CREDITCARDTYPE: request.body.CREDITCARDTYPE,
                 CREDITCARDNUM: request.body.CREDITCARDNUM,
-                CREDITCARDEXP: request.body.CREDITCARDEXP,
+                CREDITCARDEXP: request.body.CREDITCARDEXPM + ' ' + request.body.CREDITCARDEXPY,
                 CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
             };
 
