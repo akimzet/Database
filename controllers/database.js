@@ -25,7 +25,7 @@ module.exports.storeData =  function (request, response)
         var count2 = 1
         var count3 = 2
         var stringVector = '';
-        var size = arrayData.length / 3;
+        var size = Math.floor(arrayData.length / 3);
         for ( var i = 0; i < size ; i++)
         {
             stringVector += '{' + arrayData[count1] + ', ' + arrayData[count2] + ', ' + arrayData[count3] + '}';
