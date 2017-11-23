@@ -59,10 +59,10 @@ module.exports.storeData =  function (request, response)
             {
                 _id: ORDER_ID,
                 CUSTOMER_ID: CUSTOMER_ID,
-                BILLING_ID: BILLING_ID,
-                SHIPPING_ID: SHIPPING_ID,
-                DATE: DATE,
-                PRODUCT_VECTOR: stringData
+                BILLING_ID: request.body.BILLING_ID,
+                SHIPPING_ID: request.body.SHIPPING_ID,
+                DATE: request.body.DATE,
+                PRODUCT_VECTOR: request.body.stringData
             };
 
         // Send data to mLab
