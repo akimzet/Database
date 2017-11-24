@@ -10,78 +10,78 @@ module.exports.storeData =  function (request, response)
     {
         if(err) throw err;
 
-        // var CUSTOMER_ID = Math.floor((Math.random() * 1000000000000) + 1);
-        // var BILLING_ID = Math.floor((Math.random() * 1000000000000) + 1);
-        // var SHIPPING_ID = Math.floor((Math.random() * 1000000000000) + 1);
-        // var ORDER_ID = Math.floor((Math.random() * 1000000000000) + 1);
-        //
+        var CUSTOMER_ID = Math.floor((Math.random() * 1000000000000) + 1);
+        var BILLING_ID = Math.floor((Math.random() * 1000000000000) + 1);
+        var SHIPPING_ID = Math.floor((Math.random() * 1000000000000) + 1);
+        var ORDER_ID = Math.floor((Math.random() * 1000000000000) + 1);
+
         var CUSTOMERS = db.collection('CUSTOMERS');
         var BILLING = db.collection('BILLING');
         var SHIPPING = db.collection('SHIPPING');
         var ORDERS = db.collection('ORDERS');
         var ALL = db.collection('ALL');
 
-        // // Parse string data to create product vector
-        // var stringData = request.body.STRINGDATA;
-        // var arrayData = stringData.split(' ').map(Number);
-        // var count1 = 0
-        // var count2 = 1
-        // var count3 = 2
-        // var stringVector = '';
-        // var size = Math.floor(arrayData.length / 3);
-        // for ( var i = 0; i < size ; i++)
-        // {
-        //     stringVector += '{' + arrayData[count1] + ', ' + arrayData[count2] + ', ' + arrayData[count3] + '}';
-        //     count1 += 3
-        //     count2 += 3
-        //     count3 += 3
-        //     if(i != size - 1) stringVector += ', ';
-        // }
-        //
-        //
-        // var customerData =
-        //     {
-        //         _id: CUSTOMER_ID,
-        //         FIRSTNAME: request.body.FIRSTNAME,
-        //         LASTNAME: request.body.LASTNAME,
-        //         STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
-        //         CITY: request.body.SHIPPING_CITY,
-        //         STATE: request.body.SHIPPING_STATE,
-        //         ZIP: request.body.SHIPPING_ZIP,
-        //         PHONE: request.body.PHONE
-        //     };
-        //
-        //
-        // var billingData =
-        //     {
-        //         _id: BILLING_ID,
-        //         CUSTOMER_ID: CUSTOMER_ID,
-        //         CREDITCARDTYPE: request.body.CREDITCARDTYPE,
-        //         CREDITCARDNUM: request.body.CREDITCARDNUM,
-        //         CREDITCARDEXP: request.body.CREDITCARDEXPM + ' ' + request.body.CREDITCARDEXPY,
-        //         CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
-        //     };
-        //
-        // var shippingData =
-        //     {
-        //         _id: SHIPPING_ID,
-        //         CUSTOMER_ID: CUSTOMER_ID,
-        //         SHIPPING_STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
-        //         SHIPPING_CITY: request.body.SHIPPING_CITY,
-        //         SHIPPING_STATE: request.body.SHIPPING_STATE,
-        //         SHIPPING_ZIP: request.body.SHIPPING_ZIP
-        //     };
-        //
-        // var ordersData =
-        //     {
-        //         _id: ORDER_ID,
-        //         CUSTOMER_ID: CUSTOMER_ID,
-        //         BILLING_ID: BILLING_ID,
-        //         SHIPPING_ID: SHIPPING_ID,
-        //         DATE: request.body.DATE,
-        //         PRODUCT_VECTOR: stringVector,
-        //         ORDER_TOTAL: request.body.ORDER_TOTAL
-        //     };
+        // Parse string data to create product vector
+        var stringData = request.body.STRINGDATA;
+        var arrayData = stringData.split(' ').map(Number);
+        var count1 = 0
+        var count2 = 1
+        var count3 = 2
+        var stringVector = '';
+        var size = Math.floor(arrayData.length / 3);
+        for ( var i = 0; i < size ; i++)
+        {
+            stringVector += '{' + arrayData[count1] + ', ' + arrayData[count2] + ', ' + arrayData[count3] + '}';
+            count1 += 3
+            count2 += 3
+            count3 += 3
+            if(i != size - 1) stringVector += ', ';
+        }
+
+
+        var customerData =
+            {
+                _id: CUSTOMER_ID,
+                FIRSTNAME: request.body.FIRSTNAME,
+                LASTNAME: request.body.LASTNAME,
+                STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
+                CITY: request.body.SHIPPING_CITY,
+                STATE: request.body.SHIPPING_STATE,
+                ZIP: request.body.SHIPPING_ZIP,
+                PHONE: request.body.PHONE
+            };
+
+
+        var billingData =
+            {
+                _id: BILLING_ID,
+                CUSTOMER_ID: CUSTOMER_ID,
+                CREDITCARDTYPE: request.body.CREDITCARDTYPE,
+                CREDITCARDNUM: request.body.CREDITCARDNUM,
+                CREDITCARDEXP: request.body.CREDITCARDEXPM + ' ' + request.body.CREDITCARDEXPY,
+                CREDITCARDSECURITYNUM: request.body.CREDITCARDSECURITYNUM
+            };
+
+        var shippingData =
+            {
+                _id: SHIPPING_ID,
+                CUSTOMER_ID: CUSTOMER_ID,
+                SHIPPING_STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
+                SHIPPING_CITY: request.body.SHIPPING_CITY,
+                SHIPPING_STATE: request.body.SHIPPING_STATE,
+                SHIPPING_ZIP: request.body.SHIPPING_ZIP
+            };
+
+        var ordersData =
+            {
+                _id: ORDER_ID,
+                CUSTOMER_ID: CUSTOMER_ID,
+                BILLING_ID: BILLING_ID,
+                SHIPPING_ID: SHIPPING_ID,
+                DATE: request.body.DATE,
+                PRODUCT_VECTOR: stringVector,
+                ORDER_TOTAL: request.body.ORDER_TOTAL
+            };
 
         // Put all MongoDB Data into one collection
         var allData =
@@ -137,11 +137,7 @@ module.exports.storeData =  function (request, response)
 
         // Close connection to mLab
         db.close(function (err){ if(err) throw err; });
-
-
-
-
-
+        
     });
 
 
