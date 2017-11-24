@@ -25,3 +25,182 @@ views/storeData.ejs
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order Summary Page</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.js"></script>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header"> <a class="navbar-brand" href="#">EFY</a> </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a>
+            </li>
+            <li><a href="productPage.html">Product Page</a>
+            </li>
+            <li><a href="cart.php">Cart Page</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- Container -->
+<div class="container">
+    <div class="jumbotron">
+        <h1>Order Summary</h1>
+    </div>
+    <!-- Print Out All The Information -->
+    <div class="col-sm-6">
+        <div class="panel-group">
+            <div class="panel panel-success">
+                <div class="panel-heading">User Information</div>
+                <div class="panel-body">
+                    <% results.forEach(function(r) { %>
+                    <label>First and Last Name</label>
+                    <p>
+                        <%= r.FIRSTNAME%>&nbsp;
+                        <?php echo $perItem->lName; ?>
+                    </p>
+                    <label>Address Line 1</label>
+                    <p>
+                        <?php echo $perItem->address1;?>
+                    </p>
+                    <label>Address Line 2</label>
+                    <p>
+                        <?php echo $perItem->address2;?>
+                    </p>
+                    <label>City, State, and Zip Code</label>
+                    <p>
+                        <?php echo $perItem->city;?>&nbsp;
+                        <?php echo $perItem->state; ?>&nbsp;
+                        <?php echo $perItem->zip; ?>
+                    </p>
+                    <label>Billing Address 1</label>
+                    <p>
+                        <?php echo $perItem->address3;?>
+                    </p>
+                    <label>Billing Address 2</label>
+                    <p>
+                        <?php echo $perItem->address4;?>
+                    </p>
+                    <label>City, State, and Zip Code</label>
+                    <p>
+                        <?php echo $perItem->city2;?>&nbsp;
+                        <?php echo $perItem->state2; ?>&nbsp;
+                        <?php echo $perItem->zip2; ?>
+                    </p>
+                    <label>Phone Number</label>
+                    <p>
+                        <?php echo $perItem->phone;?>
+                    </p>
+                    <label>Email</label>
+                    <p>
+                        <?php echo $perItem->email;?>
+                    </p>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="panel-group">
+            <div class="panel panel-info">
+                <div class="panel-heading">Payment Information</div>
+                <div class="panel-body">
+                    <label>First and Last Name on Card</label>
+                    <p>
+                        <?php echo $payItem->name;?>
+                    </p>
+                    <label>Credit Card Type</label>
+                    <p>
+                        <?php echo $payItem->cType;?>
+                    </p>
+                    <label>Credit Card Number</label>
+                    <p>
+                        <?php echo $payItem->cNum;?>
+                    </p>
+                    <label>Expiration Date</label>
+                    <p>
+                        <?php echo $payItem->eMon;?>&nbsp;
+                        <?php echo $payItem->eYear; ?>
+                    </p>
+                    <label>Phone Number</label>
+                    <p>
+                        <?php echo $perItem->phone;?>
+                    </p>
+                    <label>Email</label>
+                    <p>
+                        <?php echo $perItem->email;?>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="panel-group">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Product Information</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Product</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Cost</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr class="info">
+                            <td>
+                                <?php echo $item->code; ?> </td>
+                            <td>
+                                <h5 class="text-center"><strong><?php echo $item->name; ?> </strong></h5>
+                                <img class="img-responsive img-thumbnail" src="<?php echo $image ?>" alt="productimg">
+                            </td>
+                            <td>
+                                <p>
+                                    <?php echo $item->description; ?>
+                                </p>
+                            </td>
+                            <td>
+                                <?php echo $item->quantity; ?> </td>
+                            <td>$<?php echo number_format($item->price, 2, '.', ''); ?> </td>
+                            <td>$<?php echo number_format($item->price * $item->quantity, 2, '.', ''); ?> </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <h4 align="right">Cost: $<?php echo number_format($total, 2, '.', ''); ?></h4>
+                    <h4 align="right">Shipping Fee: $<?php echo number_format($itemN * 2, 2, '.', ''); ?></h4>
+                    <h4 align="right">Tax Rate 8%: $<?php echo number_format(((($itemN * 2) + $total) * 0.08), 2, '.', ''); ?></h4>
+                    <h3 align="right">Total Cost: $<?php echo number_format($fTotal, 2, '.', ''); ?></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
