@@ -44,11 +44,12 @@ module.exports.storeData =  function (request, response)
                 _id: CUSTOMER_ID,
                 FIRSTNAME: request.body.FIRSTNAME,
                 LASTNAME: request.body.LASTNAME,
-                STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
-                CITY: request.body.SHIPPING_CITY,
-                STATE: request.body.SHIPPING_STATE,
-                ZIP: request.body.SHIPPING_ZIP,
+                BILLING_STREET: request.body.BILLING_STREET1 + ' ' + request.body.BILLING_STREET2,
+                CITY: request.body.CITY,
+                STATE: request.body.STATE,
+                ZIP: request.body.ZIP,
                 PHONE: request.body.PHONE
+                EMAIL: request.body.EMAIL
             };
 
 
@@ -89,11 +90,12 @@ module.exports.storeData =  function (request, response)
                 cid: CUSTOMER_ID,
                 FIRSTNAME: request.body.FIRSTNAME,
                 LASTNAME: request.body.LASTNAME,
-                STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
+                BILLING_STREET: request.body.BILLING_STREET1 + ' ' + request.body.BILLING_STREET2,
                 CITY: request.body.SHIPPING_CITY,
                 STATE: request.body.SHIPPING_STATE,
                 ZIP: request.body.SHIPPING_ZIP,
                 PHONE: request.body.PHONE,
+                EMAIL: request.body.EMAIL
 
                 bid: BILLING_ID,
                 CUSTOMER_ID: CUSTOMER_ID,

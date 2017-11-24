@@ -74,44 +74,36 @@ views/storeData.ejs
                     <% results.forEach(function(r) { %>
                     <label>First and Last Name</label>
                     <p>
-                        <%= r.FIRSTNAME%>&nbsp;
-                        <?php echo $perItem->lName; ?>
+                        <%= r.FIRSTNAME%>
+                        <%= r.LASTNAME%>
                     </p>
-                    <label>Address Line 1</label>
+                    <label>Address Line</label>
                     <p>
-                        <?php echo $perItem->address1;?>
-                    </p>
-                    <label>Address Line 2</label>
-                    <p>
-                        <?php echo $perItem->address2;?>
+                        <%= r.SHIPPING_STREET%>
                     </p>
                     <label>City, State, and Zip Code</label>
                     <p>
-                        <?php echo $perItem->city;?>&nbsp;
-                        <?php echo $perItem->state; ?>&nbsp;
-                        <?php echo $perItem->zip; ?>
+                        <%= r.SHIPPING_CITY%>
+                        <%= r.SHIPPING_STATE%>
+                        <%= r.SHIPPING_ZIP%>
                     </p>
-                    <label>Billing Address 1</label>
+                    <label>Billing Address</label>
                     <p>
-                        <?php echo $perItem->address3;?>
-                    </p>
-                    <label>Billing Address 2</label>
-                    <p>
-                        <?php echo $perItem->address4;?>
+                        <%= r.BILLING_STREET%>
                     </p>
                     <label>City, State, and Zip Code</label>
                     <p>
-                        <?php echo $perItem->city2;?>&nbsp;
-                        <?php echo $perItem->state2; ?>&nbsp;
-                        <?php echo $perItem->zip2; ?>
+                        <%= r.CITY%>
+                        <%= r.STATE%>
+                        <%= r.ZIP%>
                     </p>
                     <label>Phone Number</label>
                     <p>
-                        <?php echo $perItem->phone;?>
+                        <%= r.PHONE%>
                     </p>
                     <label>Email</label>
                     <p>
-                        <?php echo $perItem->email;?>
+                        <%= r.EMAIL%>
                     </p>
                     <% }); %>
                 </div>
