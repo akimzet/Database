@@ -11,6 +11,7 @@ var ControllerDatabase = require('../controllers/database'); //load controller c
 //**************************************************************************
 //***** mongodb get all of the Routes in Routes collection w
 //      and Render information iwith an ejs view
+
 router.post('/storeData', ControllerDatabase.storeData);
 // router.get('/storeData', ControllerDatabase.storeData);
 

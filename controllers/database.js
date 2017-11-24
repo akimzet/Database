@@ -68,7 +68,7 @@ module.exports.storeData =  function (request, response)
                 _id: SHIPPING_ID,
                 CUSTOMER_ID: CUSTOMER_ID,
                 SHIPPING_STREET: request.body.SHIPPING_STREET1 + ' ' + request.body.SHIPPING_STREET2,
-                SHIPPING_CITY: request.body.SHIPPING_CITY,
+                SHIPPING_CITY: request.body.SHIPPING_CITY    ,
                 SHIPPING_STATE: request.body.SHIPPING_STATE,
                 SHIPPING_ZIP: request.body.SHIPPING_ZIP
             };
@@ -118,16 +118,13 @@ module.exports.storeData =  function (request, response)
                 ORDER_TOTAL: request.body.ORDER_TOTAL
             };
 
-        //
-        // // Send data to mLab
+
+        // Send data to mLab
         CUSTOMERS.insertOne(customerData, function (err, result){ if (err) throw err; });
         BILLING.insertOne(billingData, function (err, result){ if (err) throw err; });
         SHIPPING.insertOne(shippingData, function (err, result){ if (err) throw err; });
         ORDERS.insertOne(ordersData, function (err, result){ if (err) throw err; });
         ALL.insertOne(allData, function (err, result){ if (err) throw err; });
-
-        // Send message back to finalOrder.php
-        response.send("THANK YOU FOR YOUR SUBMITTED ORDER");
 
         // Send data needed to views
         ALL.find().toArray(function (err, docs) {
