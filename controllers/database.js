@@ -88,18 +88,21 @@ module.exports.storeData =  function (request, response)
         SHIPPING.insertOne(shippingData, function (err, result){ if (err) throw err; });
         ORDERS.insertOne(ordersData, function (err, result){ if (err) throw err; });
 
-        // Close connection to mLab
-        db.close(function (err){ if(err) throw err; });
-
-        // Send message back to finalOrder.php
-        response.send("THANK YOU FOR YOUR SUBMITTED ORDER");
-
+        // Send data needed to views
         ORDERS.find().toArray(function (err, docs) {
             if(err) throw err;
 
             response.render('storeData', {results: docs});
 
         });
+
+        // Close connection to mLab
+        db.close(function (err){ if(err) throw err; });
+
+        // Send message back to finalOrder.php
+        response.send("THANK YOU FOR YOUR SUBMITTED ORDER");
+
+
 
     });
 
