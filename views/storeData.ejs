@@ -69,7 +69,7 @@ views/storeData.ejs
                 <div class="panel-body">
                     <label>First and Last Name</label>
                     <p>
-                        <%=CUSTOMERS.FIRSTNAME%>;
+                        <?php echo $perItem->fName;?>&nbsp;
                         <?php echo $perItem->lName; ?>
                     </p>
                     <label>Address Line 1</label>
