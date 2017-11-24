@@ -69,7 +69,7 @@ views/storeData.ejs
                 <div class="panel-body">
                     <label>First and Last Name</label>
                     <p>
-                        <?php echo $perItem->fName;?>&nbsp;
+                        <%=CUSTOMERS.FIRSTNAME%>;
                         <?php echo $perItem->lName; ?>
                     </p>
                     <label>Address Line 1</label>
@@ -180,18 +180,6 @@ views/storeData.ejs
                             <td>$<?php echo number_format($item->price, 2, '.', ''); ?> </td>
                             <td>$<?php echo number_format($item->price * $item->quantity, 2, '.', ''); ?> </td>
                         </tr>
-                        <?php
-								$total += $item->price * $item->quantity;
-                        $itemN += $item->quantity;
-
-                        //Make string for product vector
-
-                        $stringData = $stringData . (string)$item->code . ' ' . (string)$item->quantity . ' ' . (string)$item->price . ' ';
-
-
-                        } //end of loop
-                        $_SESSION[ "total" ] = $total + ( ( ( $itemN * 2 ) + $total ) * 0.08 ) + $itemN * 2;
-                        ?>
                         </tbody>
                     </table>
                     <h4 align="right">Cost: $<?php echo number_format($total, 2, '.', ''); ?></h4>
