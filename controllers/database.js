@@ -94,9 +94,13 @@ module.exports.storeData =  function (request, response)
         // Send message back to finalOrder.php
         response.send("THANK YOU FOR YOUR SUBMITTED ORDER");
 
-        router.get('/', function(req, res, next) {
-            res.render('storeData', { title: 'Database' });
+        ORDERS.find().toArray(function (err, docs) {
+            if(err) throw err;
+
+            response.render('storeData', {results: docs});
+
         });
+
     });
 
 
