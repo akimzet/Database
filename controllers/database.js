@@ -48,7 +48,7 @@ module.exports.storeData =  function (request, response)
                 CITY: request.body.CITY,
                 STATE: request.body.STATE,
                 ZIP: request.body.ZIP,
-                PHONE: request.body.PHONE
+                PHONE: request.body.PHONE,
                 EMAIL: request.body.EMAIL
             };
 
@@ -95,7 +95,7 @@ module.exports.storeData =  function (request, response)
                 STATE: request.body.SHIPPING_STATE,
                 ZIP: request.body.SHIPPING_ZIP,
                 PHONE: request.body.PHONE,
-                EMAIL: request.body.EMAIL
+                EMAIL: request.body.EMAIL,
 
                 bid: BILLING_ID,
                 CUSTOMER_ID: CUSTOMER_ID,
