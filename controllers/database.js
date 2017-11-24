@@ -88,16 +88,16 @@ module.exports.storeData =  function (request, response)
         SHIPPING.insertOne(shippingData, function (err, result){ if (err) throw err; });
         ORDERS.insertOne(ordersData, function (err, result){ if (err) throw err; });
 
-        // // Send message back to finalOrder.php
-        // response.send("THANK YOU FOR YOUR SUBMITTED ORDER");
+        // Send message back to finalOrder.php
+        response.send("THANK YOU FOR YOUR SUBMITTED ORDER");
 
-        // var c = CUSTOMERS.find({});
+        var c = CUSTOMERS.find({});
 
-        // c.forEach(
-        //     function(myDoc) {
-        //         console.log( "name: " + myDoc.name );  //just  loging the output to the console
-        //     }
-        // );
+        c.forEach(
+            function(myDoc) {
+                console.log( "name: " + myDoc.name );  //just  loging the output to the console
+            }
+        );
 
         // Send data needed to views
         CUSTOMERS.find().toArray(function (err, docs) {
