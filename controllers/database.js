@@ -91,16 +91,16 @@ module.exports.storeData =  function (request, response)
         // // Send message back to finalOrder.php
         // response.send("THANK YOU FOR YOUR SUBMITTED ORDER");
 
-        var c = ORDERS.find({});
+        // var c = CUSTOMERS.find({});
 
-        c.forEach(
-            function(myDoc) {
-                console.log( "name: " + myDoc.name );  //just  loging the output to the console
-            }
-        );
+        // c.forEach(
+        //     function(myDoc) {
+        //         console.log( "name: " + myDoc.name );  //just  loging the output to the console
+        //     }
+        // );
 
         // Send data needed to views
-        ORDERS.find().toArray(function (err, docs) {
+        CUSTOMERS.find().toArray(function (err, docs) {
             if(err) throw err;
 
             response.render('storeData', {results: docs});

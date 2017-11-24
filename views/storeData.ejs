@@ -59,7 +59,7 @@ views/storeData.ejs
 <!-- Container -->
 <div class="container">
     <div class="jumbotron">
-        <h1>Order Summary</h1>
+        <h1>THANK YOU FOR YOUR SUBMITTED ORDER</h1>
     </div>
     <!-- Print Out All The Information -->
     <div class="col-sm-6">
@@ -67,10 +67,19 @@ views/storeData.ejs
             <div class="panel panel-success">
                 <div class="panel-heading">User Information</div>
                 <div class="panel-body">
+                    <% results.forEach(function(r) { %>
+                    <li>Customer ID - <%= r.CUSTOMER_ID%></li>
+                    <li>BILLING ID - <%=r.BILLING_ID%></li>
+                    <li>SHIPPING_ID - <%=r.SHIPPING_ID%> </li>
+                    <li>DATE - <%=r.DATE%></li>
+                    <li>PRODUCT VECTOR - <%=r.PRODUCT_VECTOR%></li>
+                    <li>ORDER_TOTAL - <%=r.ORDER_TOTAL%></li>
+                    <br/><br/>
+                    <% }); %>
                     <label>First and Last Name</label>
                     <p>
-                        <?php echo $perItem->fName;?>&nbsp;
-                        <?php echo $perItem->lName; ?>
+                        <%= r.FIRSTNAME%>
+                        <%=r.LASTNAME%>
                     </p>
                     <label>Address Line 1</label>
                     <p>
