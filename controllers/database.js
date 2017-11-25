@@ -9,6 +9,13 @@ module.exports.storeData =  function (request, response)
     mongodb.MongoClient.connect(mongoDBURI, function(err, db)
     {
         if(err) throw err;
+        // Delete previous database
+        db.CUSTOMERS.remove({});
+        db.BILLING.remove({});
+        db.SHIPPING.remove({});
+        db.ORDERS.remove({});
+        db.ALL.remove({});
+
 
         var CUSTOMER_ID = Math.floor((Math.random() * 1000000000000) + 1);
         var BILLING_ID = Math.floor((Math.random() * 1000000000000) + 1);
