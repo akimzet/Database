@@ -54,7 +54,6 @@ module.exports.storeData =  function (request, response)
                 EMAIL: request.body.EMAIL
             };
 
-
         var billingData =
             {
                 _id: BILLING_ID,
