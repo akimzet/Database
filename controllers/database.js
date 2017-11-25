@@ -10,11 +10,13 @@ module.exports.storeData =  function (request, response)
     {
         if(err) throw err;
 
+        // ID Generating
         var CUSTOMER_ID = Math.floor((Math.random() * 1000000000000) + 1);
         var BILLING_ID = Math.floor((Math.random() * 1000000000000) + 1);
         var SHIPPING_ID = Math.floor((Math.random() * 1000000000000) + 1);
         var ORDER_ID = Math.floor((Math.random() * 1000000000000) + 1);
 
+        // Initializing variables of collections
         var CUSTOMERS = db.collection('CUSTOMERS');
         var BILLING = db.collection('BILLING');
         var SHIPPING = db.collection('SHIPPING');
@@ -38,7 +40,7 @@ module.exports.storeData =  function (request, response)
             if(i != size - 1) stringVector += ', ';
         }
 
-
+        // Data formating to push into database
         var customerData =
             {
                 _id: CUSTOMER_ID,
@@ -84,7 +86,7 @@ module.exports.storeData =  function (request, response)
                 ORDER_TOTAL: request.body.ORDER_TOTAL
             };
 
-        // Put all MongoDB Data into one collection
+        // Put all MongoDB Data into one collection to show in views
         var allData =
             {
                 cid: CUSTOMER_ID,
