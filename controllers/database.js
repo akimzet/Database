@@ -138,8 +138,6 @@ module.exports.storeData =  function (request, response)
 
         // Close connection to mLab
         db.close(function (err){ if(err) throw err; });
-
-        response.render('Order Successful');
     });
 
 
