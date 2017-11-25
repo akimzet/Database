@@ -21,13 +21,6 @@ module.exports.storeData =  function (request, response)
         var ORDERS = db.collection('ORDERS');
         var ALL = db.collection('ALL');
 
-        // Delete previous database
-        CUSTOMERS.drop(function (err){ if(err) throw err;});
-        BILLING.drop(function (err){ if(err) throw err;});
-        SHIPPING.drop(function (err){ if(err) throw err;});
-        ORDERS.drop(function (err){ if(err) throw err;});
-        ALL.drop(function (err){ if(err) throw err;});
-
         // Parse string data to create product vector
         var stringData = request.body.STRINGDATA;
         var arrayData = stringData.split(' ').map(Number);
