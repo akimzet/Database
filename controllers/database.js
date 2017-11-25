@@ -126,7 +126,7 @@ module.exports.storeData =  function (request, response)
         ORDERS.insertOne(ordersData, function (err, result){ if (err) throw err; });
         ALL.insertOne(allData, function (err, result){ if (err) throw err; });
 
-        response.send('Order Successful');
+
 
         // Send data needed to views
         ALL.find().toArray(function (err, docs) {
@@ -139,6 +139,7 @@ module.exports.storeData =  function (request, response)
         // Close connection to mLab
         db.close(function (err){ if(err) throw err; });
 
+        response.send('Order Successful');
     });
 
 
